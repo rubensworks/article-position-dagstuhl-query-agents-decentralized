@@ -33,15 +33,35 @@
   <!-- Add sections by specifying their file name, excluding the '.md' suffix. -->
   <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
 <div datatype="rdf:HTML" property="schema:description">
-      <h2 property="schema:name">Introduction</h2>
+      <h2 property="schema:name">Extended Abstract</h2>
 
-      <p>This is a great article on the Semantic Web <span class="references">[<a href="#ref-1">1</a>]</span>, written in Markdown.</p>
+      <p>While the Web was originally envisioned <span class="references">[<a href="#ref-1">1</a>]</span> as a decentralized information space,
+it has evolved to a place where the majority of data is flowing towards isolated <em>data silos</em>.
+Since these data silos are in the hands of large companies and organizations, this leads to issues related to privacy and vendor lock-in.</p>
 
-      <p>Make sure to <a href="https://www.principiae.be/book/pdfs/TM&amp;Th-2.0-summary.pdf">write your document effectively</a>!</p>
+      <p>To counter these problems, decentralization initiatives such as Solid <span class="references">[<a href="#ref-2">2</a>]</span> are gaining popularity,
+which allows users to store any kind of data in their own personal data vault, which they fully control.
+These data vaults are personal Knowledge Graphs that can be represented as collections of <a property="schema:citation http://purl.org/spar/cito/cites" href="https://www.w3.org/DesignIssues/LinkedData.html">Linked Data documents</a> <span class="references">[<a href="#ref-3">3</a>]</span>
+and more expressive query APIs <span class="references">[<a href="#ref-4">4</a>, <a href="#ref-5">5</a>, <a href="#ref-6">6</a>]</span>.</p>
 
-      <p class="todo">Write proper introduction.
-More information on snippets like this can be found on the <a href="https://github.com/rubensworks/ScholarMarkdown/wiki/Snippets">ScholarMarkdown wiki</a>.</p>
+      <p>The presence of such data vaults results in a large-scale distribution of data,
+where applications involving multiple individuals’ data require accessing
+thousands or even millions of APIs
+across different data vaults on the Web.
+These applications cannot effectively be built today
+due to the lack of querying techniques that can hande the requirements of decentralized environments like Solid.</p>
 
+      <p>A promising paradigm to tackle this query problem is <em>Link Traversal Query Processing (LTQP)</em> <span class="references">[<a href="#ref-7">7</a>]</span>,
+which is based on the <a property="schema:citation http://purl.org/spar/cito/cites" href="https://www.w3.org/DesignIssues/LinkedData.html"><em>follow-your-nose</em> principle</a> <span class="references">[<a href="#ref-3">3</a>]</span> of Linked Data
+where query execution is done over a continuously growing range of documents by autonomously following hyperlinks between documents.</p>
+
+      <p>In order to apply LTQP effectively to decentralized environments, several open challenges need to be tackled:</p>
+
+      <ol>
+        <li>To enable clients to select APIs with the most suitable query capabilities, there is a need to <strong>represent the capabilities of query APIs using self-descriptive hypermedia descriptions</strong>. Current approaches <span class="references">[<a href="#ref-4">4</a>, <a href="#ref-8">8</a>]</span> have limited expressivity.</li>
+        <li>To enable clients to select and discover APIs matching their query needs, there is a need to <strong>describe the contents of the data exposed through query APIs via hypermedia</strong>, which could be cardinality-based, shape-based, or approximate summaries. Current approaches <span class="references">[<a href="#ref-9">9</a>]</span> lack the discovery and privacy-preservation.</li>
+        <li>To enable efficient client-side query execution, there is a need for <strong>algorithms that provide (adaptive) query planning and execution over the heterogeneity of query APIs</strong> in terms of capabilities, contents, and client-side policies. Current techniques <span class="references">[<a href="#ref-7">7</a>]</span> suffer from query termination problems caused by unselective link following technique,s and inefficient query plans caused by static non-adapting query planning.</li>
+      </ol>
     </div>
 </section>
 
@@ -51,7 +71,23 @@ More information on snippets like this can be found on the <a href="https://gith
 <h2 id="references">References</h2>
 <dl class="references">
   <dt id="ref-1">[1]</dt>
-  <dd resource="#semanticweb" typeof="schema:Article">Berners-Lee, T., Hendler, J., Lassila, O., others: The semantic web. Scientific American. 284, 28–37 (2001).</dd>
+  <dd resource="#webproposal" typeof="schema:CreativeWork">Berners-Lee, T.J.: Information management: A proposal. (1989).</dd>
+  <dt id="ref-2">[2]</dt>
+  <dd resource="#solid" typeof="schema:Article">Mansour, E., Sambra, A.V., Hawke, S., Zereba, M., Capadisli, S., Ghanem, A., Aboulnaga, A., Berners-Lee, T.: A Demonstration of the Solid platform for Social Web Applications. In: Proceedings of the 25th International Conference Companion on World Wide Web. pp. 223–226. International World Wide Web Conferences Steering Committee (2016).</dd>
+  <dt id="ref-3">[3]</dt>
+  <dd resource="https://www.w3.org/DesignIssues/LinkedData.html" typeof="schema:CreativeWork">Berners-Lee, T.: Linked Data. <a href="https://www.w3.org/DesignIssues/LinkedData.html">https:/​/​www.w3.org/DesignIssues/LinkedData.html</a> (2009).</dd>
+  <dt id="ref-4">[4]</dt>
+  <dd resource="#ldf" typeof="schema:Article">Verborgh, R., Vander Sande, M., Hartig, O., Van Herwegen, J., De Vocht, L., De Meester, B., Haesendonck, G., Colpaert, P.: Triple Pattern Fragments: a low-cost Knowledge Graph Interface for the Web. Journal of Web Semantics. 37, 184–206 (2016).</dd>
+  <dt id="ref-5">[5]</dt>
+  <dd resource="#smartkg" typeof="schema:Article">Azzam, A., Fernández, J.D., Acosta, M., Beno, M., Polleres, A.: SMART-KG: hybrid shipping for SPARQL querying on the web. In: Proceedings of The Web Conference 2020. pp. 984–994 (2020).</dd>
+  <dt id="ref-6">[6]</dt>
+  <dd resource="#brtpf" typeof="schema:Article">Hartig, O., Buil-Aranda, C.: Bindings-restricted triple pattern fragments. In: OTM Confederated International Conferences&#8221; On the Move to Meaningful Internet Systems&#8221;. pp. 762–779. Springer (2016).</dd>
+  <dt id="ref-7">[7]</dt>
+  <dd resource="#linktraversal" typeof="schema:Article">Hartig, O.: An Overview on Execution Strategies for Linked Data Queries. Datenbank-Spektrum. 13, 89–99 (2013).</dd>
+  <dt id="ref-8">[8]</dt>
+  <dd resource="https://www.w3.org/TR/sparql11-service-description/" typeof="schema:CreativeWork">Todd Williams, G.: SPARQL 1.1 Service Description. W3C, <a href="https://www.w3.org/TR/sparql11-service-description/">https:/​/​www.w3.org/TR/sparql11-service-description/</a> (2013).</dd>
+  <dt id="ref-9">[9]</dt>
+  <dd resource="#summaries" typeof="schema:Article">Čebirić, Š., Goasdoué, F., Kondylakis, H., Kotzinos, D., Manolescu, I., Troullinou, G., Zneika, M.: Summarizing semantic graphs: a survey. The VLDB journal. 28, 295–327 (2019).</dd>
 </dl>
 </section>
 </footer>
